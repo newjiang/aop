@@ -1,0 +1,29 @@
+package com.jiang.aop.theory.pattern;
+
+
+public class ProxySubject implements Subject{
+
+    private RealSubject realSubject;
+
+    public ProxySubject(RealSubject realSubject) {
+        this.realSubject = realSubject;
+    }
+
+    @Override
+    public void request() {
+        System.out.println("-------before-------");
+        try{
+            realSubject.request();
+        }catch (Exception e){
+            System.out.println("-------ex-------"+e.getMessage());
+            throw e;
+        }finally {
+            System.out.println("-------after-------");
+        }
+    }
+
+    @Override
+    public void hello() {
+        realSubject.hello();
+    }
+}
