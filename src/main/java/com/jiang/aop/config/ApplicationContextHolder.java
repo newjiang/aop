@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * 用于获取ApplicationContext
+ * 用于获取 master ApplicationContext
  */
 @Component
 public class ApplicationContextHolder implements ApplicationContextAware {
