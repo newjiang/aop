@@ -1,7 +1,7 @@
 package demo.jiang.aop.theory.dynamic.jdk;
 
 
-import demo.jiang.aop.theory.pattern.Subject;
+import demo.jiang.aop.theory.proxy.TargetSubject;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -14,9 +14,9 @@ import java.lang.reflect.Method;
  */
 public class JdkProxy implements InvocationHandler {
 
-    private Subject subject;
+    private final TargetSubject subject;
 
-    public JdkProxy(Subject subject) {
+    public JdkProxy(TargetSubject subject) {
         this.subject = subject;
     }
 

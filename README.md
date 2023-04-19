@@ -39,7 +39,7 @@ id3(wildecards 通配符)-->id3.1("* 匹配任意数量的字符")
 id3(wildecards 通配符)-->id3.2("+ 匹配制定数量的类及其子类")
 id3(wildecards 通配符)-->id3.3(".. 一般用于匹配任意数量的子包或参数")
 
-id4(operators 运算符)-->id4.1("&& 非")
+id4(operators 运算符)-->id4.1("&& 与")
 id4(operators 运算符)-->id4.2("|| 或")
 id4(operators 运算符)-->id4.3("!  非")
 ```
@@ -71,7 +71,7 @@ AOP织入的时机
         通过继承实现的代理
 静态代理的缺点：
     代理越多，重复越多。
-    
+  
 动态代理：
     JDK代理：
         只能代理接口的
@@ -79,21 +79,21 @@ AOP织入的时机
         实现java.lang.reflect.InvocationHandler完成织入
     cglib代理：
         通过继承的方式实现代理类
-        因为基于继承的方式实现代理，所以无法对static，final类进行代理       
-        因为基于继承的方式实现代理，所以无法对static，private方法进行代理    
+        因为基于继承的方式实现代理，所以无法对static，final类进行代理   
+        因为基于继承的方式实现代理，所以无法对static，private方法进行代理  
 Spring如何选择代理bean?
     如果目标对象实现了接口,则默认采用JDK动态代理
     如果目标对象没有实现接口,则采用Cglib进行动态代理
     如果目标对象实现了接口,且强制cglib代理,则使用cglib代理
-    
+  
     在SpringBoot中，启动类加上以下注解强制使用Cglib代理，该注解默认是false
     @EnableAspectJAutoProxy(proxyTargetClass = true)
-    
+  
     具体可以看Spring源码
     public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
         public DefaultAopProxyFactory() {
         }
-    
+  
         public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
             if (!config.isOptimize() && !config.isProxyTargetClass() && !this.hasNoUserSuppliedProxyInterfaces(config)) {
                 return new JdkDynamicAopProxy(config);
@@ -107,7 +107,7 @@ Spring如何选择代理bean?
                 }
             }
         }
-    
+  
         private boolean hasNoUserSuppliedProxyInterfaces(AdvisedSupport config) {
             Class<?>[] ifcs = config.getProxiedInterfaces();
             return ifcs.length == 0 || ifcs.length == 1 && SpringProxy.class.isAssignableFrom(ifcs[0]);
@@ -131,17 +131,17 @@ public interface Subject {
 
 public class ProxySubject implements Subject{
 
-    private RealSubject realSubject;
+    private RealSubject realTargetSubject;
 
-    public ProxySubject(RealSubject realSubject) {
-        this.realSubject = realSubject;
+    public ProxySubject(RealSubject realTargetSubject) {
+        this.realTargetSubject = realTargetSubject;
     }
 
     @Override
     public void request() {
         System.out.println("-------before-------");
         try{
-            realSubject.request();
+            realTargetSubject.request();
         }catch (Exception e){
             System.out.println("-------ex-------"+e.getMessage());
             throw e;
@@ -152,7 +152,7 @@ public class ProxySubject implements Subject{
 
     @Override
     public void hello() {
-        realSubject.hello();
+        realTargetSubject.hello();
     }
 }
 
@@ -185,7 +185,7 @@ public class DemoService {
         System.out.println("select from database");
         return Arrays.asList("AAA","BBB","CCC");
     }
-    
+  
     public List<String> innerCall(){
         return getData();
     }
@@ -213,7 +213,7 @@ public class ApplicationContextHolder implements ApplicationContextAware {
     public static ApplicationContext getContext() {
         return ctx;
     }
-    
+  
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         ctx = applicationContext;

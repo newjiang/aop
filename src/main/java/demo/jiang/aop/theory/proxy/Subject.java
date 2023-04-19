@@ -1,14 +1,11 @@
-package demo.jiang.aop.theory.pattern;
-
+package demo.jiang.aop.theory.proxy;
 
 /**
  * 代理接口
  */
-public interface ISubject {
-
+public interface Subject {
     /**
      * 请求
      */
     void request();
-
 }

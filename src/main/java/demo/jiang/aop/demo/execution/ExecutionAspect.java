@@ -1,21 +1,20 @@
 package demo.jiang.aop.demo.execution;
 
-import org.aspectj.lang.JoinPoint;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
- * 格式：[修饰符] [返回值] [包名] [方法名] [方法参数名] [异常]
+ * 表达式切面，格式：[修饰符] [返回值] [包名] [方法名] [方法参数名] [异常]
  */
+@Slf4j
 @Aspect
 @Component
 public class ExecutionAspect {
-
     /**
      * 只匹配ExecutionService下的alpha的方法
-     *
      * 方法是public的
      * 方法是无返回值的
      * 方法是无参的
@@ -30,16 +29,12 @@ public class ExecutionAspect {
     }
 
     @Before("matchAlpha()")
-    public void matchAlphaTest(JoinPoint joinPoint) {
-        String name = joinPoint.getSignature().toShortString();
-        System.out.println("ExecutionAspect.matchAlpha: " + name);
+    public void matchAlphaBefore() {
+        log.info("{}.matchAlphaBefore()..", this.getClass().getSimpleName());
     }
 
     @Before("matchBeta()")
-    public void matchBetaTest(JoinPoint joinPoint) {
-        String name = joinPoint.getSignature().toShortString();
-        System.out.println("ExecutionAspect.matchBeta: " + name);
+    public void matchBetaBefore() {
+        log.info("{}.matchBetaBefore()..", this.getClass().getSimpleName());
     }
-
-
 }

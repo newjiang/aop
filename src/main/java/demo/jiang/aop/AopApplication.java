@@ -7,9 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 @SpringBootApplication
 public class AopApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AopApplication.class, args);
     }
-
 }
