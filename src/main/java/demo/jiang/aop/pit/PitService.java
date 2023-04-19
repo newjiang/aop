@@ -1,6 +1,8 @@
 package demo.jiang.aop.pit;
 
 import demo.jiang.aop.context.ApplicationContextHolder;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import java.util.List;
 /**
  * AOP的坑
  */
+@Slf4j
 @Service
 public class PitService {
     /**
@@ -17,7 +20,7 @@ public class PitService {
      */
     @Cacheable(cacheNames = {"cache"})
     public List<String> query() {
-        System.out.println("select from database");
+        log.info("select from database ...");
         return Arrays.asList("AAA", "BBB", "CCC");
     }
 
@@ -25,6 +28,7 @@ public class PitService {
      * 错误的调用
      */
     public List<String> errorCall() {
+//        log.info("errorCall [this] is aop proxy = {}", AopUtils.isAopProxy(this));
         return query();
     }
 
@@ -32,30 +36,30 @@ public class PitService {
      * 正确的调用
      */
     public List<String> correctCall() {
-        PitService bean = ApplicationContextHolder.getContext().getBean(PitService.class);
-        return bean.query();
+        PitService pitService = ApplicationContextHolder.getContext().getBean(PitService.class);
+//        log.info("correctCall [pitService] is aop proxy = {}", AopUtils.isAopProxy(this));
+        return pitService.query();
     }
-
 
     /**
      * 静态方法
      */
     public static void staticMethod() {
-        System.out.println("execute static method ..");
+        log.info("PitService.staticMethod() ..");
     }
 
     /**
      * 最终方法
      */
     public final void finalMethod() {
-        System.out.println("execute final method ..");
+        log.info("PitService.finalMethod() ..");
     }
 
     /**
      * 私有方法
      */
     private void privateMethod() {
-        System.out.println("execute private method ..");
+        log.info("PitService.privateMethod() ..");
     }
 
     /**
