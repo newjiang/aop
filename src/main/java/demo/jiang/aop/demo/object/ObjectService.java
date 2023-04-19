@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 public class ObjectService implements IObjectService {
     @Override
     public String alpha() {
-        log.info("{}.alpha ..", this.getClass().getSimpleName());
+        log.info("{}.alpha() ..", this.getClass().getSimpleName());
         return "alpha";
     }
 
     @Override
     public String beta() {
-        log.info("{}.beta ..", this.getClass().getSimpleName());
+        log.info("{}.beta() ..", this.getClass().getSimpleName());
         return "beta";
     }
 }

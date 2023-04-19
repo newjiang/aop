@@ -20,27 +20,27 @@ public class AnnotationService {
      */
     @MyAnno
     public void matchAnnotation() {
-        log.info("{}.matchAnnotation ..", this.getClass().getSimpleName());
+        log.info("{}.matchAnnotation() ..", this.getClass().getSimpleName());
     }
 
     /**
      * 匹配注解@MyWithin
      */
     public void matchWithin() {
-        log.info("{}.matchWithin ..", this.getClass().getSimpleName());
+        log.info("{}.matchWithin() ..", this.getClass().getSimpleName());
     }
 
     /**
      * 匹配注解@MyTarget
      */
     public void matchTarget() {
-        log.info("{}.matchTarget ..", this.getClass().getSimpleName());
+        log.info("{}.matchTarget() ..", this.getClass().getSimpleName());
     }
 
     /**
      * 匹配注解@MyArgs
      */
     public void matchArgs(ArgsDto dto) {
-        log.info("{}.matchArgs .., dto = {}", this.getClass().getSimpleName(), dto);
+        log.info("{}.matchArgs(dto = {}). .", this.getClass().getSimpleName(), dto);
     }
 }

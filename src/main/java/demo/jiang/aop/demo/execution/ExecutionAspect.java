@@ -24,7 +24,7 @@ public class ExecutionAspect {
     public void matchAlpha() {
     }
 
-    @Pointcut("execution(public * demo.jiang.aop..ExecutionService.beta(..))")
+    @Pointcut("execution(public * demo.jiang.aop..ExecutionService.*Foo(..))")
     public void matchBeta() {
     }
 

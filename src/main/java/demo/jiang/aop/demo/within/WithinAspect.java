@@ -21,7 +21,7 @@ public class WithinAspect {
     }
 
     /**
-     * 匹配demo.jiang.aop开头，within结尾的所有类的所有方法
+     * 匹配demo.jiang.aop开头，包命是within结尾的所有类的所有方法
      */
     @Pointcut("within(demo.jiang.aop..within.*)")
     public void matchPackage() {

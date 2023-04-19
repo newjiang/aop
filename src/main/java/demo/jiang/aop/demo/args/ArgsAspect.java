@@ -1,4 +1,4 @@
-package demo.jiang.aop.demo.param;
+package demo.jiang.aop.demo.args;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,26 +12,31 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 @Component
-public class ParamAspect {
+public class ArgsAspect {
     /**
-     * 匹配任何以find开头的方法 且 匹配是demo.jiang.aop包下的
+     * 1.匹配任何以find开头的方法
+     * 2.匹配findXxx()的参数是任意的
+     * 3.匹配是demo.jiang.aop下的
      */
     @Pointcut("execution(* *..find*(..)) && within(demo.jiang.aop..*)")
     public void findAny() {
     }
 
     /**
-     * 匹配只有Long参数的方法 且 匹配是demo.jiang.aop包下的
+     * 1.匹配只有Long参数的方法
+     * 2.匹配是demo.jiang.aop包下的
      */
     @Pointcut("args(Long) && within(demo.jiang.aop..*)")
     public void onlyLong() {
     }
 
     /**
-     * 匹配delete开头和第一个参数是Long的方法 且 匹配是demo.jiang.aop包下的
+     * 1.匹配delete开头和第一个参数是Long的方法
+     * 2.匹配deleteXxx()的放法，第一个参数是long类型的
+     * 3.匹配是demo.jiang.aop包下的
      */
     @Pointcut("execution(* *..delete*(Long,..)) && within(demo.jiang.aop..*)")
-    public void findAndLongStart() {
+    public void startsWithdeleteAndFirstParamTypeIsLong() {
     }
 
     @Before("findAny()")
@@ -44,8 +49,8 @@ public class ParamAspect {
         log.info("{}.onlyLongBefore()..", this.getClass().getSimpleName());
     }
 
-    @Before("findAndLongStart()")
-    public void findAndLongStartBefore() {
-        log.info("{}.findAndLongStartBefore()..", this.getClass().getSimpleName());
+    @Before("startsWithdeleteAndFirstParamTypeIsLong()")
+    public void startsWithdeleteAndFirstParamTypeIsLongBefore() {
+        log.info("{}.startsWithdeleteAndFirstParamTypeIsLongBefore()..", this.getClass().getSimpleName());
     }
 }

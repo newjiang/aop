@@ -16,7 +16,7 @@ public abstract class Handler {
      * 执行
      */
     public void execute() {
-        processed();
+        proceed();
         if (handler != null) {
             handler.execute();
         }
@@ -25,5 +25,5 @@ public abstract class Handler {
     /**
      * 继续执行
      */
-    protected abstract void processed();
+    protected abstract void proceed();
 }

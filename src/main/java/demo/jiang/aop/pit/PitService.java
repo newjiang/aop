@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Service
 public class PitService {
-
     /**
      * 带有缓存的查询方法
      */

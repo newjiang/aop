@@ -15,7 +15,7 @@ public class WithinService {
      * @return alpha
      */
     public String alpha() {
-        log.info("{}.alpha ..", this.getClass().getSimpleName());
+        log.info("{}.alpha() ..", this.getClass().getSimpleName());
         return "alpha";
     }
 
@@ -25,7 +25,7 @@ public class WithinService {
      * @return beta
      */
     public String beta() {
-        log.info("{}.beta ..", this.getClass().getSimpleName());
+        log.info("{}.beta() ..", this.getClass().getSimpleName());
         return "beta";
     }
 }

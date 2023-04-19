@@ -1,12 +1,21 @@
 package demo.jiang.aop.theory.chain.spring;
 
+/**
+ * 调用链处理器
+ */
 public abstract class ChainHandler {
-
-    public  void execute(Chain chain) {
-        handleProcess();
+    /**
+     * 执行
+     *
+     * @param chain 调用链
+     */
+    public void execute(Chain chain) {
+        proceed();
         chain.proceed();
     }
 
-    protected abstract void handleProcess();
-
+    /**
+     * 继续执行
+     */
+    protected abstract void proceed();
 }

@@ -32,8 +32,8 @@ public class ObjectAspect {
     }
 
     @Before("matchThis()")
-    public void matchPackageBefore() {
-        log.info("{}.matchPackageBefore()..", this.getClass().getSimpleName());
+    public void matchThisBefore() {
+        log.info("{}.matchThisBefore()..", this.getClass().getSimpleName());
     }
 
     @Before("matchTarget()")

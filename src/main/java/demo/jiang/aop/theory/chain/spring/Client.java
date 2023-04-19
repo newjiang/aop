@@ -1,36 +1,28 @@
-package demo.jiang.aop.theory.chain.simple;
+package demo.jiang.aop.theory.chain.spring;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * 客户端
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Slf4j
 public class Client {
-    /**
-     * HandlerAlpha
-     */
-    static class HandlerAlpha extends Handler {
+    static class ChainHandlerAlpha extends ChainHandler {
         @Override
         protected void proceed() {
             log.info("handle by {} ..", this.getClass().getSimpleName());
         }
     }
 
-    /**
-     * HandlerBate
-     */
-    static class HandlerBate extends Handler {
+    static class ChainHandlerBeta extends ChainHandler {
         @Override
         protected void proceed() {
             log.info("handle by {} ..", this.getClass().getSimpleName());
         }
     }
 
-    /**
-     * HandlerGamma
-     */
-    static class HandlerGamma extends Handler {
+    static class ChainHandlerGamma extends ChainHandler {
         @Override
         protected void proceed() {
             log.info("handle by {} ..", this.getClass().getSimpleName());
@@ -38,11 +30,11 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        Handler alpha = new HandlerAlpha();
-        Handler bate = new HandlerBate();
-        Handler gamma = new HandlerGamma();
-        alpha.setHandler(bate);
-        bate.setHandler(gamma);
-        alpha.execute();
+        List<ChainHandler> handlers = new ArrayList<>();
+        handlers.add(new ChainHandlerAlpha());
+        handlers.add(new ChainHandlerBeta());
+        handlers.add(new ChainHandlerGamma());
+        Chain chain = new Chain(handlers);
+        chain.proceed();
     }
 }

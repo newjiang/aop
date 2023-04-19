@@ -10,4 +10,11 @@ public class ArgsDto {
      * id
      */
     private String id;
+
+    public ArgsDto() {
+    }
+
+    public ArgsDto(String id) {
+        this.id = id;
+    }
 }

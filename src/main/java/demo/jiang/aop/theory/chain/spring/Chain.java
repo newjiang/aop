@@ -2,6 +2,9 @@ package demo.jiang.aop.theory.chain.spring;
 
 import java.util.List;
 
+/**
+ * 调用链
+ */
 public class Chain {
 
     private List<ChainHandler> handlers;
@@ -12,9 +15,12 @@ public class Chain {
         this.handlers = handlers;
     }
 
-    public void proceed(){
-        if(index >= handlers.size()){
-            return ;
+    /**
+     * 执行
+     */
+    public void proceed() {
+        if (index >= handlers.size()) {
+            return;
         }
         handlers.get(index++).execute(this);
     }

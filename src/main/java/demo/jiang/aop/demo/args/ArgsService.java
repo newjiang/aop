@@ -1,4 +1,4 @@
-package demo.jiang.aop.demo.param;
+package demo.jiang.aop.demo.args;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ParamService {
+public class ArgsService {
     /**
      * findAny
      *
      * @return String
      */
     public String findAny() {
-        log.info("{}.findAny ..", this.getClass().getSimpleName());
+        log.info("{}.findAny() ..", this.getClass().getSimpleName());
         return "findAny";
     }
 
@@ -36,8 +36,8 @@ public class ParamService {
      * @param id Long
      * @return Long
      */
-    public String deleteById(Long id) {
+    public Long deleteById(Long id) {
         log.info("{}.deleteById(id = {}) ..", this.getClass().getSimpleName(), id);
-        return "deleteById";
+        return id;
     }
 }
