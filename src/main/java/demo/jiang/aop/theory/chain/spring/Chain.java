@@ -4,10 +4,12 @@ import java.util.List;
 
 /**
  * 调用链
+ *
+ * @see org.springframework.aop.framework.ReflectiveMethodInvocation#proceed()
  */
 public class Chain {
 
-    private List<ChainHandler> handlers;
+    private final List<ChainHandler> handlers;
 
     private int index = 0;
 
