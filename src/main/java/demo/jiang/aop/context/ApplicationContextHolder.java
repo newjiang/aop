@@ -1,5 +1,7 @@
 package demo.jiang.aop.context;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -10,16 +12,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ApplicationContextHolder implements ApplicationContextAware {
-
+    /**
+     * Spring的上下文
+     */
+    @Setter
+    @Getter
     private static ApplicationContext context;
-
-    public static ApplicationContext getContext() {
-        return context;
-    }
-
-    private static void setContext(ApplicationContext applicationContext) {
-        ApplicationContextHolder.context = applicationContext;
-    }
 
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {

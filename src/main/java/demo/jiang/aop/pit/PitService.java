@@ -28,7 +28,7 @@ public class PitService {
      * 错误的调用
      */
     public List<String> errorCall() {
-//        log.info("errorCall [this] is aop proxy = {}", AopUtils.isAopProxy(this));
+        // log.info("errorCall [this] is aop proxy = {}", AopUtils.isAopProxy(this));
         return query();
     }
 
@@ -37,26 +37,26 @@ public class PitService {
      */
     public List<String> correctCall() {
         PitService pitService = ApplicationContextHolder.getContext().getBean(PitService.class);
-//        log.info("correctCall [pitService] is aop proxy = {}", AopUtils.isAopProxy(this));
+        // log.info("correctCall [pitService] is aop proxy = {}", AopUtils.isAopProxy(this));
         return pitService.query();
     }
 
     /**
-     * 静态方法
+     * 静态方法，不能代理
      */
     public static void staticMethod() {
         log.info("PitService.staticMethod() ..");
     }
 
     /**
-     * 最终方法
+     * 最终方法，不能代理
      */
     public final void finalMethod() {
         log.info("PitService.finalMethod() ..");
     }
 
     /**
-     * 私有方法
+     * 私有方法，不能代理
      */
     private void privateMethod() {
         log.info("PitService.privateMethod() ..");
@@ -66,7 +66,7 @@ public class PitService {
      * 静态方法
      */
     public void executePrivateMethod() {
-        PitService bean = ApplicationContextHolder.getContext().getBean(PitService.class);
-        bean.privateMethod();
+        PitService service = ApplicationContextHolder.getContext().getBean(PitService.class);
+        service.privateMethod();
     }
 }
