@@ -17,7 +17,6 @@ import java.util.List;
 public class PitService {
     /**
      * 带有缓存的查询方法
-     * @see org.springframework.cache.aspectj.AnnotationCacheAspect
      */
     @Cacheable(cacheNames = {"cache"})
     public List<String> query() {
